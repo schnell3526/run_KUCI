@@ -5,10 +5,18 @@
 #$ -j y
 #$ -cwd
 
-module add python/3.8/3.8.7
-module add cuda/11.0
+source /etc/profile.d/modules.sh
+export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
+
+module load gcc/9.3.0
+module load python/3.8/3.8.7
+module load cuda/11.0
+module load cudnn/8.2/8.2.1
+module load nccl/2.9/2.9.9-1
 
 source /groups1/gcc50435/ito/work/bin/activate
+
+
 
 python /groups1/gcc50435/ito/work/run_KUCI/train.py \
 --model_name_or_path "cl-tohoku/bert-base-japanese-whole-word-masking" \
